@@ -1,2 +1,4 @@
+include ':app:client'
+include ':app:server'
 include ':app'
 rootProject.name = "MobilePlusToyApp"

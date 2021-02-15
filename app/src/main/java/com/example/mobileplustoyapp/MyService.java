@@ -8,7 +8,6 @@ import android.util.Log;
 
 public class MyService extends Service {
 
-    private static final String TAG = "태그입니다";
     IBinder mBinder = new MyBinder();
 
     public class MyBinder extends Binder{
@@ -17,19 +16,35 @@ public class MyService extends Service {
         }
     }
 
-    public int getAns(int a, int b){
-        return a + b;
+    public int ADD(int num1, int num2){
+        return num1 + num2;
+    }
+
+    public int SUB(int num1, int num2){
+        return num1 - num2;
+    }
+
+    public int MUL(int num1, int num2){
+        return num1 * num2;
+    }
+
+    public float DIV(int num1, int num2) {
+        float ans = 0;
+        try {
+            ans = (float)num1 / num2;
+        }catch (ArithmeticException e){
+            e.printStackTrace();
+        }
+        return ans;
     }
 
     @Override
     public IBinder onBind(Intent intent) {
-        Log.d(TAG, "서비스 onBind에서 시작");
         return mBinder;
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(TAG, "서비스 시작");
         return super.onStartCommand(intent, flags, startId);
     }
 

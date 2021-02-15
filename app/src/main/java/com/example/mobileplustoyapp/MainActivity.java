@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     MyService myService;
     boolean isService = false;
 
+    static float ans = 0;
+
     ServiceConnection mConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -51,16 +53,12 @@ public class MainActivity extends AppCompatActivity {
         TextView textView_result = (TextView) findViewById(R.id.textView_result);
         TextView textView_sym = (TextView) findViewById((R.id.textView_symb));
 
-        String text1 = editText1.getText().toString();
-        String text2 = editText2.getText().toString();
-
-        //int num1 = Integer.parseInt(text1);
-        //int num2 = Integer.parseInt(text2);
-
         bbind.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent intent = new Intent(MainActivity.this, MyService.class);
                 bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+                Toast.makeText(getApplicationContext(),
+                        "Service start", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -68,46 +66,85 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
                 unbindService(mConnection);
                 isService = false;
+                Toast.makeText(getApplicationContext(),
+                        "Service closing", Toast.LENGTH_LONG).show();
             }
         });
 
         badd.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                textView_sym.setText("+");
+                if(!isService){
+                    Toast.makeText(getApplicationContext(),
+                            "Not in service", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    int num1 = Integer.parseInt(editText1.getText().toString());
+                    int num2 = Integer.parseInt(editText2.getText().toString());
+                    textView_result.setText("");
+                    textView_sym.setText("+");
+                    ans = myService.ADD(num1, num2);
+                }
             }
         });
 
         bsub.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                textView_sym.setText("-");
+                if(!isService){
+                    Toast.makeText(getApplicationContext(),
+                            "Not in service", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    int num1 = Integer.parseInt(editText1.getText().toString());
+                    int num2 = Integer.parseInt(editText2.getText().toString());
+                    textView_result.setText("");
+                    textView_sym.setText("-");
+                    ans = myService.SUB(num1, num2);
+                }
             }
         });
 
         bmul.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                textView_sym.setText("X");
+                if(!isService) {
+                    Toast.makeText(getApplicationContext(),
+                            "Not in service", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    int num1 = Integer.parseInt(editText1.getText().toString());
+                    int num2 = Integer.parseInt(editText2.getText().toString());
+                    textView_result.setText("");
+                    textView_sym.setText("X");
+                    ans = myService.MUL(num1, num2);
+                }
             }
         });
 
         bdiv.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                textView_sym.setText("/");
+                if(!isService){
+                    Toast.makeText(getApplicationContext(),
+                            "Not in service", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    int num1 = Integer.parseInt(editText1.getText().toString());
+                    int num2 = Integer.parseInt(editText2.getText().toString());
+                    textView_result.setText("");
+                    textView_sym.setText("/");
+                    ans = myService.DIV(num1, num2);
+                }
             }
         });
 
         bcalc.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                if (!isService){
+                if (!isService) {
                     Toast.makeText(getApplicationContext(),
-                            "서비스 중이 아님", Toast.LENGTH_LONG).show();
-                    return;
+                            "Not in service", Toast.LENGTH_LONG).show();
+                    textView_result.setText(" ");
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),
-                            text1, Toast.LENGTH_LONG).show();
+                    textView_result.setText(Float.toString(ans));
                 }
-                //int Ans = myService.getAns(num1, num2);
-               // textView_result.setText(Ans);
             }
         });
 
