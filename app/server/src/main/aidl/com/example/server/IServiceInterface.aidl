@@ -2,8 +2,11 @@
 package com.example.server;
 
 // Declare any non-default types here with import statements
+import com.example.server.IServiceCallback;
 
 interface IServiceInterface {
-    int sum(int a, int b);
+    boolean isAvailable();
+    boolean registerCallback(IServiceCallback callback);
+    boolean unregisterCallback(IServiceCallback callback);
 
 }
