@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     static float ans = 0;
 
-    ServiceConnection mConnection = new ServiceConnection() {
+    final ServiceConnection mConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             MyService.MyBinder binder = (MyService.MyBinder) service;
