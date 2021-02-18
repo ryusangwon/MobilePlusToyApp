@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    String log = "MainActivity";
     MyService myService;
     boolean isService = false;
 
