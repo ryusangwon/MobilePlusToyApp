@@ -2,7 +2,7 @@
 package com.example.client;
 
 // Declare any non-default types here with import statements
-import com.example.server.IServiceInterface;
+import com.example.server.IServiceCallback;
 
 interface IServiceInterface {
     /**
