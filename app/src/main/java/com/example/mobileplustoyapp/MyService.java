@@ -8,6 +8,7 @@ import android.util.Log;
 
 public class MyService extends Service {
 
+
     IBinder mBinder = new MyBinder();
 
     public class MyBinder extends Binder{

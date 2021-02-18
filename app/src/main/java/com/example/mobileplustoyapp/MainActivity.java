@@ -78,11 +78,16 @@ public class MainActivity extends AppCompatActivity {
                             "Not in service", Toast.LENGTH_LONG).show();
                 }
                 else{
-                    int num1 = Integer.parseInt(editText1.getText().toString());
-                    int num2 = Integer.parseInt(editText2.getText().toString());
-                    textView_result.setText("");
-                    textView_sym.setText("+");
-                    ans = myService.ADD(num1, num2);
+                    try {
+                        textView_result.setText("");
+                        textView_sym.setText("+");
+                        int num1 = Integer.parseInt(editText1.getText().toString());
+                        int num2 = Integer.parseInt(editText2.getText().toString());
+                        ans = myService.ADD(num1, num2);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
                 }
             }
         });
@@ -94,11 +99,16 @@ public class MainActivity extends AppCompatActivity {
                             "Not in service", Toast.LENGTH_LONG).show();
                 }
                 else{
-                    int num1 = Integer.parseInt(editText1.getText().toString());
-                    int num2 = Integer.parseInt(editText2.getText().toString());
-                    textView_result.setText("");
-                    textView_sym.setText("-");
-                    ans = myService.SUB(num1, num2);
+                    try {
+                        textView_result.setText("");
+                        textView_sym.setText("-");
+                        int num1 = Integer.parseInt(editText1.getText().toString());
+                        int num2 = Integer.parseInt(editText2.getText().toString());
+                        ans = myService.SUB(num1, num2);
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+
                 }
             }
         });
@@ -110,11 +120,16 @@ public class MainActivity extends AppCompatActivity {
                             "Not in service", Toast.LENGTH_LONG).show();
                 }
                 else{
-                    int num1 = Integer.parseInt(editText1.getText().toString());
-                    int num2 = Integer.parseInt(editText2.getText().toString());
-                    textView_result.setText("");
-                    textView_sym.setText("X");
-                    ans = myService.MUL(num1, num2);
+                    try {
+                        textView_result.setText("");
+                        textView_sym.setText("X");
+                        int num1 = Integer.parseInt(editText1.getText().toString());
+                        int num2 = Integer.parseInt(editText2.getText().toString());
+                        ans = myService.MUL(num1, num2);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
                 }
             }
         });
@@ -126,11 +141,16 @@ public class MainActivity extends AppCompatActivity {
                             "Not in service", Toast.LENGTH_LONG).show();
                 }
                 else{
-                    int num1 = Integer.parseInt(editText1.getText().toString());
-                    int num2 = Integer.parseInt(editText2.getText().toString());
-                    textView_result.setText("");
-                    textView_sym.setText("/");
-                    ans = myService.DIV(num1, num2);
+                    try {
+                        textView_result.setText("");
+                        textView_sym.setText("/");
+                        int num1 = Integer.parseInt(editText1.getText().toString());
+                        int num2 = Integer.parseInt(editText2.getText().toString());
+                        ans = myService.DIV(num1, num2);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
                 }
             }
         });
@@ -143,7 +163,12 @@ public class MainActivity extends AppCompatActivity {
                     textView_result.setText(" ");
                 }
                 else{
-                    textView_result.setText(Float.toString(ans));
+                    try {
+                        textView_result.setText(Float.toString(ans));
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
                 }
             }
         });
